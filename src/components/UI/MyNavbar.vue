@@ -1,19 +1,21 @@
 <template>
   <div class="navbar">
-    <linked-list></linked-list>
-    <LogoText></LogoText>
+    <logo-content></logo-content>
+    <link-list></link-list>
     <UserButton></UserButton>
   </div>
 </template>
 
 <script>
-import LogoText from "@/components/LogoText";
 import UserButton from "@/components/UserButtonFull";
-import LinkedList from "@/components/LinkedList";
+import LinkList from "@/components/LinkList";
+import LogoContent from "@/components/LogoContent";
+
 export default {
   components: {
-    LinkedList,
-    LogoText, UserButton
+    LogoContent,
+    LinkList,
+     UserButton
   },
   name: "MyNavbar",
 }

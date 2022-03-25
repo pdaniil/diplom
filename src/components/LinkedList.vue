@@ -1,18 +1,11 @@
 <template>
   <div v-if="this.$store.state.screenState.fullScreen" class="component">
-    <img @click="$router.push('/')" class="logo" src="../assets/logo_true.png" alt="">
     <TabMenu @tab-change="chatLink" id="tabstrip" class="p-tag-warning" :model="items" />
   </div>
-  <div v-if="this.$store.state.screenState.middleScreen" class="component">
-    <img @click="$router.push('/')" class="logo" src="../assets/logo_true.png" alt="">
-  </div>
-  <div v-if="this.$store.state.screenState.smallScreen" class="component">
-    <img @click="$router.push('/')" class="logo" src="../assets/logo_true.png" alt="">
-  </div>
-
 </template>
 
 <script>
+
 export default {
   name: "LinkedList",
   data() {
@@ -52,9 +45,6 @@ export default {
   .component {
     display: flex;
     align-items: flex-end;
-  }
-  .logo {
-    width: 120px;
   }
   #tabstrip .p-tabmenuitem  {
     color: red;
