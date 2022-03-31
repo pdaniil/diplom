@@ -1,23 +1,22 @@
 <template>
   <div class="page">
-    <my-navbar></my-navbar>
+    <my-navbar-mobile v-if="this.$store.state.screenState.smallScreen"></my-navbar-mobile>
+    <my-navbar-fullscreen v-if="this.$store.state.screenState.fullScreen || this.$store.state.screenState.middleScreen"></my-navbar-fullscreen>
     <div class="article">
       <router-view />
-    </div>
-    <div class="footer">
     </div>
   </div>
 </template>
 <script>
 
+import MyNavbarMobile from "@/components/Header/MyNavbarMobile";
+import MyNavbarFullscreen from "@/components/Header/MyNavbarFullscreen";
 export default {
   name: 'App',
+  components: {MyNavbarFullscreen, MyNavbarMobile},
   data(){
     return {
       windowWidth: window.innerWidth,
-      fullScreen: false,
-      middleScreen: false,
-      smallScreen: false
     }
   },
   mounted() {

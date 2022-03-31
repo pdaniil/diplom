@@ -5,11 +5,11 @@
   </div>
   <div v-if="this.$store.state.screenState.middleScreen" class="component component-middlescreen">
     <div  class="text-8xl part">Part</div>
-    <div  class="text-8xl text-green-300 shop">S</div>
+    <div  class="text-8xl text-green-300 shop">Shop</div>
   </div>
   <div v-if="this.$store.state.screenState.smallScreen"  class="component component-smallscreen">
-    <div  class="text-8xl part">P</div>
-    <div  class="text-8xl text-green-300 shop">S</div>
+    <div class="text-6xl part">Part</div>
+    <div class="text-6xl text-green-300 shop">Shop</div>
   </div>
 </template>
 
@@ -31,6 +31,9 @@ export default {
     display: flex;
     align-items: flex-end;
 
+  }
+  .component-smallscreen {
+    margin-top: -10px;
   }
   .part {
     border-bottom: 2px solid var(--green-300) !important;

@@ -2,6 +2,7 @@ import {createApp} from 'vue';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
 
+
 //UI компоненты Prime
 import components from '@/components/UI/index'
 
@@ -16,6 +17,7 @@ import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 import '/node_modules/primeflex/primeflex.css';
 import Tooltip from 'primevue/tooltip';
+
 
 //Инициализация приложения
 const app = createApp(App);

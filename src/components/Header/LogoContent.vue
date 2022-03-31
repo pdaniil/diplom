@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import LogoImage from "@/components/LogoImage";
-import LogoText from "@/components/LogoText";
+import LogoImage from "@/components/Header/LogoImage";
+import LogoText from "@/components/Header/LogoText";
 export default {
   name: "LogoContent",
   components: {LogoText, LogoImage}
