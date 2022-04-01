@@ -7,7 +7,7 @@
         {{product.brand}}
       </div>
       <div class="row_node">
-        {{product.description}}
+        {{product.exist}}
       </div>
       <div class="row_node">
         {{product.price}}
@@ -15,25 +15,39 @@
       <div class="row_node">
         {{product.time}}
       </div>
-
-      <div class="user_bar">
-          <i clas="pi pi-check"></i>
-      </div>
+      <MyTableRowUserBar @shop="toCart" @modal="this.modalShow = true"></MyTableRowUserBar>
   </div>
+  <MyDialog :display="modalShow" :product="product" @hideDialog="this.modalShow = false" @shop="toCart">
+    Карточка товара
+  </MyDialog>
 </template>
 
 <script>
 import Product from "@/classes/Product";
+import MyTableRowUserBar from "@/components/SearchPage/MyTableRowUserBar";
+import MyDialog from "@/components/SearchPage/MyDialog";
 
 export default {
+  components: {MyDialog, MyTableRowUserBar},
   props: {
       product: Product
+  },
+  data() {
+    return {
+      countForOrder: 0,
+      modalShow: false
+    }
+  },
+  methods: {
+    toCart() {
+        this.modalShow = false;
+    }
   },
   name: "MyTableRow"
 }
 </script>
 
-<style scoped>
+<style>
     .table_row {
       display: grid;
       grid-template-columns: repeat(5, 4fr) 1fr;
@@ -47,4 +61,5 @@ export default {
     .dark {
       background: var(--gray-300);
     }
+
 </style>

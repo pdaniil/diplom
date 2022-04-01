@@ -8,16 +8,28 @@
     >
       <template #header>
         <div class="dialog__header">
-            Карточка товара {{productArr.name.property_value}}
+            <slot></slot>
         </div>
       </template>
       <div class="dialog__content">
-        <MyDialogProductProperty v-for="property in productArr" :key="property.name" :property="property"></MyDialogProductProperty>
+          <div class="description">
+            <h3>Описание товара: </h3>
+            {{product.description}}
+          </div>
+          <h3>Таблица характеристик:</h3>
+          <div class="properties">
+              <MyDialogProductProperty :name="'Артикул'" :value="product.article"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Брэнд'" :value="product.brand"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Цена'" :value="product.price"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Количество'" :value="product.exist"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Время доставки'" :value="product.time"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Склад'" :value="product.storage"></MyDialogProductProperty>
+          </div>
       </div>
       <template #footer>
         <div class="dialog__footer">
           <Button @click="this.$emit('hideDialog')" icon="pi pi-times" label="Закрыть" class="p-button-secondary" style="margin-left: .5em" />
-          <Button icon="pi pi-check" label="В корзину" class="p-button-success"/>
+          <Button @click="this.$emit('shop')" icon="pi pi-check" label="В корзину" class="p-button-success"/>
         </div>
       </template>
     </Dialog>
@@ -26,15 +38,17 @@
 
 <script>
 import Dialog from 'primevue/dialog';
-import MyDialogProductProperty from "@/components/SearchPage/MyDialogPorductProperty";
+import Product from "@/classes/Product";
+import MyDialogProductProperty from "@/components/SearchPage/MyDialogProductProperty";
 export default {
   name: "MyDialog",
   props: {
     display: Boolean,
-    productArr: Array,
+    product: Product,
   },
   components: {
-    Dialog, MyDialogProductProperty
+    MyDialogProductProperty,
+    Dialog
   },
   data() {
     return {
@@ -58,8 +72,8 @@ export default {
 
 <style>
   .dialog__header {
-    font-size: 20px;
-    color: var(--purple-600);
+    font-size: 25px;
+    color: var(--green-600);
   }
   .dialog__content {
 
@@ -70,6 +84,13 @@ export default {
   .dialog__footer .p-button {
     margin-left: 5px !important;
     padding: 12px 20px;
-    background:  var(--purple-300) !important;
+
+  }
+  .properties {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    border: 1px solid var(--purple-100);
+    border-bottom: 0px solid var(--purple-100);
+    margin-top: 5px;
   }
 </style>

@@ -8,7 +8,7 @@
         Брэнд
       </div>
       <div class="head_node">
-        Описание
+        Количество
       </div>
       <div class="head_node">
         Цена

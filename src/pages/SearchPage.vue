@@ -4,8 +4,6 @@
       Поиск товаров
     </div>
     <div class="content_place">
-      <MyFilter></MyFilter>
-
       <div class="search_window">
         <div class="searchString">
           <div>&nbsp;</div>
@@ -40,11 +38,11 @@
 <script>
 import MySearchString from "@/components/SearchPage/MySearchString";
 import MyTableProducts from "@/components/SearchPage/MyTableProducts";
-import MyFilter from "@/components/SearchPage/MyFilter";
 import Product from "@/classes/Product";
+
 export default {
   name: "SearchPage",
-  components: {MyFilter, MyTableProducts, MySearchString},
+  components: { MyTableProducts, MySearchString},
   data() {
     return {
       article: '',
@@ -54,8 +52,8 @@ export default {
       onload: false,
       response: [
         {id: 1, article: 'asd123123123', name: 'Насос водяной', brand: 'dolz23123123123123123', price: 23.1, exist: 100},
-        {id: 2, article: 'C110', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 3, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
+        {id: 2, article: 'C110', name: 'Насос водяной', description: 'Товар предназначен для терки полов.', brand: 'dolz', price: 23.1, exist: 100},
+        {id: 3, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 30, exist: 100},
         {id: 4, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
         {id: 5, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
         {id: 6, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
@@ -64,12 +62,12 @@ export default {
         {id: 9, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
         {id: 10, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
         {id: 11, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 12, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 13, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
+        {id: 12, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 22, exist: 100},
+        {id: 13, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 100, exist: 100},
       ],
 
       arrayRequest: [],
-      arrayAnalogs: []
+      arrayAnalogs: [],
     }
   },
   methods: {
@@ -114,8 +112,10 @@ export default {
     },
     fetchProducts() {
         //Выполняем API запрос
-
     }
+  },
+  mounted() {
+
   }
 }
 </script>
