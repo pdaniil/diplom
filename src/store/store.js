@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
-
-
+import filter from "@/store/FilterStore";
+import sorted from "@/store/SortedStore";
 const widthScreen = {
     state: () => ({
         fullScreen: false,
@@ -15,6 +15,8 @@ const widthScreen = {
         }
     }
 }
+
+
 
 const shopCart = {
     state: () => ({
@@ -39,7 +41,9 @@ const shopCart = {
 export const store = createStore({
             modules: {
                 screenState: widthScreen,
-                cart: shopCart
+                cart: shopCart,
+                filter: filter,
+                sorted: sorted
             },
         })
 

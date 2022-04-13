@@ -1,19 +1,22 @@
 <template>
-  <div class="table_row" :class="{dark: !product.darkBack}">
+  <div class="table_row" :class="{dark: !darkBack}">
       <div class="row_node">
         {{product.article}}
       </div>
       <div class="row_node">
         {{product.brand}}
       </div>
-      <div class="row_node">
+      <div class="row_node hidden-xs">
         {{product.exist}}
       </div>
       <div class="row_node">
-        {{product.price}}
+        {{product.price + ' руб.'}}
       </div>
-      <div class="row_node">
-        {{product.time}}
+      <div class="row_node hidden-xs" v-if="product.time > 0">
+        {{product.time}} дн.
+      </div>
+      <div class="row_node hidden-xs" v-else>
+        На складе
       </div>
       <MyTableRowUserBar @shop="toCart" @modal="this.modalShow = true"></MyTableRowUserBar>
   </div>
@@ -30,7 +33,8 @@ import MyDialog from "@/components/SearchPage/MyDialog";
 export default {
   components: {MyDialog, MyTableRowUserBar},
   props: {
-      product: Product
+      product: Product,
+      darkBack: Boolean
   },
   data() {
     return {
@@ -56,10 +60,21 @@ export default {
     .row_node {
       word-wrap: break-word;
       max-width: 120px;
+
     }
 
     .dark {
       background: var(--gray-300);
     }
 
+    @media (max-width: 700px) {
+      .hidden-xs {
+        display: none;
+      }
+      .table_row {
+        display: grid;
+        grid-template-columns: repeat(3, 4fr) 1fr;
+        padding: 12px;
+      }
+    }
 </style>

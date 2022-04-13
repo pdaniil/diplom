@@ -34,7 +34,11 @@ export default {
 
 <style>
   .search_group {
-    display: grid;
+    display: flex;
+    justify-content: center;
+  }
+  .search_group .p-inputgroup {
+
   }
   .search_group .p-button .p-button-icon	 {
     color: white !important;

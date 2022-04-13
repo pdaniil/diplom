@@ -20,9 +20,10 @@
           <div class="properties">
               <MyDialogProductProperty :name="'Артикул'" :value="product.article"></MyDialogProductProperty>
               <MyDialogProductProperty :name="'Брэнд'" :value="product.brand"></MyDialogProductProperty>
-              <MyDialogProductProperty :name="'Цена'" :value="product.price"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Цена'" :value="product.price + ' руб.'"></MyDialogProductProperty>
               <MyDialogProductProperty :name="'Количество'" :value="product.exist"></MyDialogProductProperty>
-              <MyDialogProductProperty :name="'Время доставки'" :value="product.time"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Время доставки'" :value="product.time + ' дн.'" v-if="product.time > 0"></MyDialogProductProperty>
+              <MyDialogProductProperty :name="'Время доставки'" :value="'На складе'" v-else></MyDialogProductProperty>
               <MyDialogProductProperty :name="'Склад'" :value="product.storage"></MyDialogProductProperty>
           </div>
       </div>

@@ -4,10 +4,11 @@
       Поиск товаров
     </div>
     <div class="content_place">
+
       <div class="search_window">
         <div class="searchString">
           <div>&nbsp;</div>
-          <MySearchString :articleSearch="article" :load="onload" @article="startSearch"></MySearchString>
+          <MySearchString :articleSearch="article" :load="onload" @article="search"></MySearchString>
         </div>
         <div class="onload text-center mt-3 mb-1" v-if="onload">
           Идёт поиск товаров <i class="pi pi-spin pi-spinner" style="font-size: 1.5rem"></i>
@@ -15,18 +16,21 @@
         <div class="onload text-center mt-3 mb-1" v-if="first_open">
           Тут отобразятся результаты поиска
         </div>
+
+        <MyFilter v-if="(isset_request || isset_analogs) && !first_open && !onload"></MyFilter>
+
         <!--Таблица по запросу-->
-        <div class="tableResult" v-if="isset_request">
+        <div class="tableResult" v-if="isset_request && this.$store.state.filter.showRequest">
           <div>&nbsp;</div>
-          <MyTableProducts :products="this.arrayRequest">Запрошенный артикул</MyTableProducts>
+          <MyTableProducts :products="this.arrayRequest" :table="'request'">Запрошенный артикул</MyTableProducts>
         </div>
-        <div class="onload text-center mt-3 mb-1" v-else-if="!first_open && !onload">
+        <div class="onload text-center mt-3 mb-1" v-else-if="!first_open && this.$store.state.filter.showRequest && !onload">
           По данному артикулу нет рeзультатов
         </div>
         <!--Аналоги-->
-        <div class="tableResult" v-if="isset_analogs">
+        <div class="tableResult" v-if="isset_analogs && this.$store.state.filter.showAnalogs">
           <div></div>
-          <MyTableProducts :products="arrayAnalogs">Аналоги и заменители</MyTableProducts>
+          <MyTableProducts :products="arrayAnalogs" :table="'analogs'">Аналоги и заменители</MyTableProducts>
         </div>
       </div>
     </div>
@@ -39,10 +43,12 @@
 import MySearchString from "@/components/SearchPage/MySearchString";
 import MyTableProducts from "@/components/SearchPage/MyTableProducts";
 import Product from "@/classes/Product";
+import MyFilter from "@/components/SearchPage/MyFilter";
+
 
 export default {
   name: "SearchPage",
-  components: { MyTableProducts, MySearchString},
+  components: {MyFilter, MyTableProducts, MySearchString},
   data() {
     return {
       article: '',
@@ -50,72 +56,112 @@ export default {
       isset_request: false,
       isset_analogs: false,
       onload: false,
-      response: [
-        {id: 1, article: 'asd123123123', name: 'Насос водяной', brand: 'dolz23123123123123123', price: 23.1, exist: 100},
-        {id: 2, article: 'C110', name: 'Насос водяной', description: 'Товар предназначен для терки полов.', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 3, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 30, exist: 100},
-        {id: 4, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 5, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 6, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 7, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 8, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 9, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 10, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 11, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 23.1, exist: 100},
-        {id: 12, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 22, exist: 100},
-        {id: 13, article: 'asd', name: 'Насос водяной', brand: 'dolz', price: 100, exist: 100},
-      ],
-
+      response: [],
       arrayRequest: [],
       arrayAnalogs: [],
+      arrStoragesId: [],
     }
   },
   methods: {
-    startSearch( article ){
+    resetCurrentField(article) {
+      this.isset_request = false;
+      this.isset_analogs = false;
       this.first_open = false;
       this.article = article;
       this.onload = true;
-
       this.arrayRequest = [];
       this.arrayAnalogs = [];
-
-      this.fetchProducts();
+    },
+    appendProducts ( products ) {
 
       let modRequest = 0;
       let modAnalogs = 0;
+      products.forEach((el) => {
+        let product = new Product(el);
 
-      this.response.forEach((el, index) => {
-          let product = new Product(el);
+        if (product.article.toUpperCase() == this.article.toUpperCase())
+        {
+          if ((modRequest % 2) == 0)
+            product.darkBack = true
+          modRequest++;
 
-          if (product.article == this.article)
-          {
-            if ((modRequest % 2) == 0)
-              product.darkBack = true
-            modRequest++;
-
-            this.arrayRequest.push(product);
-            this.isset_request = true;
-          }
-          else
-          {
-            if ((modAnalogs % 2) == 0)
-              product.darkBack = true
-            modAnalogs++;
-
-            setTimeout(()=> {this.arrayAnalogs.push(product);}, 1000 *  (index + 1));
-            this.isset_analogs = true;
-          }
-          setTimeout(()=> {this.onload = false;}, 14000);
+          this.arrayRequest.push(product);
+          this.isset_request = true;
+        }
+        else
+        {
+          if ((modAnalogs % 2) == 0)
+            product.darkBack = true
+          modAnalogs++;
+          this.arrayAnalogs.push(product);
+          this.isset_analogs = true;
+        }
 
       });
-
     },
-    fetchProducts() {
-        //Выполняем API запрос
+    search( article ) {
+      this.$store.commit('resetBrands');
+
+      this.resetCurrentField( article );
+      let promiseArr = [];
+      this.arrStoragesId.forEach((el) => {
+        promiseArr.push(this.fetchProducts( el ));
+      });
+
+      Promise.all( promiseArr )
+      .then(() => {
+          console.log('done');
+          this.onload = false;
+          this.setFilterProperties();
+      });
+    },
+    fetchStoragesId() {
+        fetch('http://partshop.site/backend/public/api/get-storages-id')
+            .then((response) => {
+               return response.json();
+            })
+            .then((data) => {
+              this.arrStoragesId = data.data;
+            });
+    },
+    fetchProducts( id ) {
+        const body = {
+          "article" : this.article,
+          "id" : id
+        };
+        const init =
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(body),
+            };
+
+        return fetch('http://partshop.site/backend/public/api/search', init)
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                this.appendProducts( data.products );
+              });
+    },
+    setEachFilterField( array ) {
+        array.forEach((el) => {
+              this.$store.commit('setMinPrice', el.price);
+              this.$store.commit('setMaxPrice', el.price);
+              this.$store.commit('appendBrand', el.brand);
+              this.$store.commit('changeExist', el.exist);
+              this.$store.commit('appendStorage', el.storage);
+        });
+    },
+    setFilterProperties() {
+        this.setEachFilterField( this.arrayAnalogs );
+        this.setEachFilterField( this.arrayRequest );
     }
   },
   mounted() {
-
+      this.fetchStoragesId();
   }
 }
 </script>
@@ -134,7 +180,7 @@ export default {
   }
   .content_place {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+
   }
 
   .onload {
@@ -149,18 +195,17 @@ export default {
     color: var(--green-500);
   }
   .search_window {
-    padding: 20px;
+
   }
   .content_place:last-child {
-    padding: 20px;
+
   }
   .searchString {
-      display: grid;
-      grid-template-columns: 1fr 30fr;
+
+
   }
   .tableResult {
-    display: grid;
-    grid-template-columns: 1fr 30fr;
+
   }
 
 </style>
