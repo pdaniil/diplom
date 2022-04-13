@@ -59,7 +59,6 @@ const filter = {
             state.selectedPrice = [];
             state.selectedPrice.push(price[0]);
             state.selectedPrice.push(price[1]);
-            console.log(state.selectedPrice);
         },
         changeSelectedExist( state, exist ) {
             state.selectedExist = exist;
