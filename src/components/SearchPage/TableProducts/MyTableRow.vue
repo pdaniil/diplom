@@ -27,8 +27,8 @@
 
 <script>
 import Product from "@/classes/Product";
-import MyTableRowUserBar from "@/components/SearchPage/MyTableRowUserBar";
-import MyDialog from "@/components/SearchPage/MyDialog";
+import MyTableRowUserBar from "@/components/SearchPage/TableProducts/MyTableRowUserBar";
+import MyDialog from "@/components/SearchPage/DialogProduct/MyDialog";
 
 export default {
   components: {MyDialog, MyTableRowUserBar},

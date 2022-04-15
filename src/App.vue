@@ -1,7 +1,6 @@
 <template>
   <div class="page">
-    <my-navbar-mobile v-if="this.$store.state.screenState.smallScreen"></my-navbar-mobile>
-    <my-navbar-fullscreen v-if="this.$store.state.screenState.fullScreen || this.$store.state.screenState.middleScreen"></my-navbar-fullscreen>
+    <Header></Header>
     <div class="article">
       <router-view />
     </div>
@@ -9,11 +8,11 @@
 </template>
 <script>
 
-import MyNavbarMobile from "@/components/Header/MyNavbarMobile";
-import MyNavbarFullscreen from "@/components/Header/MyNavbarFullscreen";
+
+import Header from "@/components/Header/Header";
 export default {
   name: 'App',
-  components: {MyNavbarFullscreen, MyNavbarMobile},
+  components: {Header},
   data(){
     return {
       windowWidth: window.innerWidth,

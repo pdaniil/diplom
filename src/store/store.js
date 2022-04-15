@@ -1,49 +1,17 @@
 import { createStore } from 'vuex'
-import filter from "@/store/FilterStore";
-import sorted from "@/store/SortedStore";
-const widthScreen = {
-    state: () => ({
-        fullScreen: false,
-        middleScreen: false,
-        smallScreen: false
-    }),
-    mutations: {
-        changeScreen(state, obj){
-            state.fullScreen = obj.fullScreen;
-            state.middleScreen = obj.middleScreen;
-            state.smallScreen = obj.smallScreen;
-        }
-    }
-}
-
-
-
-const shopCart = {
-    state: () => ({
-        products: [],
-        countProduct: 0,
-        totalPrice: 0
-    }),
-    mutations: {
-
-        appendProduct(state, product) {
-            state.products.push(product);
-            state.countProduct++;
-        },
-
-        removeProduct(state, product) {
-            state.products = state.products.filter(el => el.id != product.id);
-            state.countProduct--;
-        }
-    }
-}
+import filter from "@/store/modules/FilterStore";
+import sorted from "@/store/modules/SortedStore";
+import user from "@/store/modules/UserStore";
+import widthScreen from "@/store/modules/ScreenStore";
+import shopCart from "@/store/modules/CartStore";
 
 export const store = createStore({
             modules: {
                 screenState: widthScreen,
                 cart: shopCart,
                 filter: filter,
-                sorted: sorted
+                sorted: sorted,
+                user: user
             },
         })
 

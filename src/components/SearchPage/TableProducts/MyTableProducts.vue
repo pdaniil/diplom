@@ -13,8 +13,8 @@
 
 <script>
 
-import MyTableHeader from "@/components/SearchPage/MyTableHeader";
-import MyTableRow from "@/components/SearchPage/MyTableRow";
+import MyTableHeader from "@/components/SearchPage/TableProducts/MyTableHeader";
+import MyTableRow from "@/components/SearchPage/TableProducts/MyTableRow";
 export default {
   name: "MyTableProducts",
   props: {

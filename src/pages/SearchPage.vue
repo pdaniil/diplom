@@ -41,7 +41,7 @@
 
 <script>
 import MySearchString from "@/components/SearchPage/MySearchString";
-import MyTableProducts from "@/components/SearchPage/MyTableProducts";
+import MyTableProducts from "@/components/SearchPage/TableProducts/MyTableProducts";
 import Product from "@/classes/Product";
 import MyFilter from "@/components/SearchPage/MyFilter";
 

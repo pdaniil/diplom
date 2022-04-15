@@ -40,7 +40,7 @@
 <script>
 import Dialog from 'primevue/dialog';
 import Product from "@/classes/Product";
-import MyDialogProductProperty from "@/components/SearchPage/MyDialogProductProperty";
+import MyDialogProductProperty from "@/components/SearchPage/DialogProduct/MyDialogProductProperty";
 export default {
   name: "MyDialog",
   props: {

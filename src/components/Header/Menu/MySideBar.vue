@@ -1,12 +1,12 @@
 <template>
   <div class="bar">
-    <Sidebar v-model:visible="visibleLeft">
+    <Sidebar v-model:visible="visibleLeft" @hide="this.$emit('hide')">
       <h3>Меню</h3>
       <div class="bar__menu">
         <Menu :model="items"></Menu>
       </div>
     </Sidebar>
-    <Button icon="pi pi-list" class="p-button-success p-button-rounded p-button-outlined" @click="visibleLeft = true" />
+    <!--<Button icon="pi pi-list" class="p-button-success p-button-rounded p-button-outlined" @click="visibleLeft = true" />-->
   </div>
 
 </template>
@@ -15,13 +15,16 @@
 import Sidebar from 'primevue/sidebar';
 import Menu from 'primevue/menu';
 export default {
+  props: {
+    visible: Boolean
+  },
   name: "MySideBar",
   components: {
     Sidebar,Menu
   },
   data() {
     return {
-      visibleLeft: false,
+      visibleLeft: this.visible,
       items: [
         {
           label: 'Главная',
@@ -56,6 +59,16 @@ export default {
           }
         },
       ]
+    }
+  },
+  methods: {
+      hideSideBar() {
+        this.$emit('hide');
+      }
+  },
+  watch: {
+    visible( value ) {
+        this.visibleLeft = value;
     }
   }
 }
