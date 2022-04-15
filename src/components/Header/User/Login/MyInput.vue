@@ -1,6 +1,14 @@
 <template>
   <div class="my-input">
-    <InputText :type="type" :id="property" :placeholder="placeholder" :modelValue="value" @input="( newValue ) => { this.value = newValue.target.value }" @blur="this.$emit('stopInput', this.value, property)"></InputText>
+    <InputText
+        :type="type"
+        :placeholder="placeholder"
+        :modelValue="value"
+        @input="( newValue ) => { this.value = newValue.target.value }"
+        @blur="callback( this.value )"
+    >
+
+    </InputText>
   </div>
 </template>
 
@@ -8,22 +16,18 @@
 export default {
   name: "MyInput",
   props: {
-      property: String,
       type: String,
-      placeholder: String
+      placeholder: String,
+      callback: Function,
+      currentValue: Function
   },
   data() {
     return {
         value: ''
     }
   },
-  methods : {
-    catchInput() {
-      console.log(this.value);
-    },
-    inputValue( ) {
-
-    }
+  mounted() {
+    this.value = this.currentValue();
   }
 }
 </script>

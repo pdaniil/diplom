@@ -2,19 +2,19 @@
   <div class="component">
 
     <div class="confirm" v-if="type == 'confirm'">
-      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-text"  @click="this.$emit('click')" />
+      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-text"   />
     </div>
     <div class="confirm-mobile" v-if="type == 'confirm-mobile'">
-      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-rounded p-button-outlined p-button-success"  @click="this.$emit('click')" />
+      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-rounded p-button-outlined p-button-success"   />
     </div>
     <div class="cancel" v-if="type == 'cancel'" >
-      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-text"  @click="this.$emit('click')" />
+      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-text"  />
     </div>
     <div class="extra" v-if="type == 'extra'" >
-      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-text"  @click="this.$emit('click')" />
+      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-text"   />
     </div>
     <div class="extra-mobile" v-if="type == 'extra-mobile'">
-      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-rounded p-button-outlined p-button-success"  @click="this.$emit('click')" />
+      <Button  :label="text" :icon="icon" iconPos="right" class="p-button-rounded p-button-outlined p-button-success"  />
     </div>
   </div>
 </template>

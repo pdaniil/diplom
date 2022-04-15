@@ -8,6 +8,7 @@ import MultiSelect from 'primevue/multiselect';
 import Sidebar from 'primevue/sidebar';
 import Dialog from "primevue/dialog";
 import SplitButton from 'primevue/splitbutton';
+import Message from 'primevue/message';
 export default [
-    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton
+    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton, Message
 ]

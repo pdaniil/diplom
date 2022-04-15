@@ -6,6 +6,9 @@ import widthScreen from "@/store/modules/ScreenStore";
 import shopCart from "@/store/modules/CartStore";
 
 export const store = createStore({
+            state: () => ({
+                baseQueryUrl : 'http://partshop.site/backend/public/api/'
+            }),
             modules: {
                 screenState: widthScreen,
                 cart: shopCart,
