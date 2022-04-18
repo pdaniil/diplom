@@ -20,8 +20,9 @@
             </div>
           </template>
 
-          <Message severity="warn" v-if="this.errorsLogin.length > 0 && type == 'login'">{{this.errorsLogin[this.errorsLogin.length - 1]}}</Message>
-          <Message severity="warn" v-if="this.errorsRegister.length > 0 && type == 'register'">{{this.errorsRegister[0]}}</Message>
+          <Message severity="warn" v-if="this.currentErrorLogin != '' && this.issetErrorsLogin">{{this.currentErrorLogin}}</Message>
+          <Message severity="warn" v-if="this.currentErrorRegister != '' && this.issetErrorsRegister ">{{this.currentErrorRegister}}</Message>
+          <Message severity="success" v-if="type == 'register'  && this.successMessage ">Вы успешно прошли регистрацию!</Message>
           <div class="content" >
 
               <div class="content__login" v-if="type == 'login'">
@@ -34,7 +35,7 @@
                 </MyInput>
               </div>
           </div>
-          <div class="register" v-if="type == 'register'">
+          <div class="register" v-if="type == 'register' && !this.successMessage">
             <div class="content__login">
               <MyInput v-for="field in regFields" :key="field"
                        :type="field.type"
@@ -50,9 +51,12 @@
                 <UserButton :text="'Регистрация'" @click="this.$emit('register')" :type="'extra'"></UserButton>
                 <UserButton :text="'Войти'" :type="'confirm'" @click="authenticate"></UserButton>
             </div>
-            <div class="dialog__footer" v-if="type == 'register'">
+            <div class="dialog__footer" v-else-if="type == 'register' ">
               <UserButton :text="'Вход'" :type="'confirm'" @click="this.$emit('login')"></UserButton>
-              <UserButton :text="'Зарегистрироваться'" :type="'extra'" @click="register"></UserButton>
+              <UserButton :text="'Зарегистрироваться'"  v-if="!this.successMessage" :type="'extra'" @click="register"></UserButton>
+            </div>
+            <div class="" v-else>
+                Теперь Вы можете войти на сайт
             </div>
           </template>
       </Dialog>
@@ -82,8 +86,11 @@ export default {
         { type: 'password', placeholder: 'Пароль', callback: this.__callBackSetPasswordReg, currentValue: this.getPasswordReg},
         { type: 'password', placeholder: 'Повторите пароль', callback: this.__callbackSetPasswordConfReg, currentValue: this.getPasswordConfReg}
       ],
-      errorsLogin: [],
-      errorsRegister: []
+      currentErrorLogin: '',
+      issetErrorsLogin: false,
+      currentErrorRegister: '',
+      issetErrorsRegister: false,
+      successMessage: false
     }
   },
   methods: {
@@ -136,7 +143,6 @@ export default {
         keys.forEach((el, index) => {
             queryParams.append(el, params[index]);
         });
-        console.log( url );
         const init = {
             method: 'POST',
             headers: myHeaders,
@@ -150,23 +156,19 @@ export default {
             });
     },
     responseProcessed( response, url ) {
-        const errors = Object.values(response.errors);
-        if ( url == 'register' )
+        let errors = [];
+        if (response.errors != null)
+           errors = Object.values(response.errors);
+
+        if (this.errorsProcessed( errors , url))
         {
-          if (errors.length > 0)
-            this.errorsRegister.push(errors[0]);
-          else
-           this.errorsRegister = [];
+            this.currentErrorRegister = '';
+            this.currentErrorLogin = '';
+
+            if (url == 'login')
+              this.$emit('loginSuccess', response.token);
         }
 
-
-        if ( url == 'login' )
-        {
-            if (errors.length > 0)
-              this.errorsLogin.push(errors[0]);
-            else
-              this.errorsLogin = [];
-        }
     },
     getDataReg(){
         return {
@@ -187,12 +189,44 @@ export default {
     },
     register() {
         this.fetchPostUserData('register', this.getDataReg() );
+    },
+    errorsProcessed( errors, type ) {
+
+        if (type == 'register' && errors.length > 0)
+        {
+          this.currentErrorRegister = errors[0][0];
+          this.issetErrorsRegister = true;
+          return false
+        }
+        else
+        {
+          this.currentErrorRegister = '';
+          this.successMessage = true;
+        }
+
+
+        if (type == 'login' && errors.length > 0)
+        {
+          this.issetErrorsLogin = true;
+          this.currentErrorLogin = errors[0][0];
+          return false;
+        }
+        else
+          this.currentErrorLogin = '';
+
+        this.issetErrorsLogin = false;
+        this.issetErrorsRegister = false;
+
+        return true;
     }
   },
   watch: {
     visible( value ) {
       this.modalShow = value;
     }
+  },
+  mounted() {
+    this.successMessage = false;
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header></Header>
+    <Header @login="loginUser" ></Header>
     <div class="article">
       <router-view />
     </div>
@@ -10,58 +10,31 @@
 
 
 import Header from "@/components/Header/Header";
+import User from "@/classes/User";
 export default {
   name: 'App',
   components: {Header},
   data(){
     return {
-      windowWidth: window.innerWidth,
+        user: User
     }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
-      this.onResize();
-    });
   },
   methods: {
-    onResize() {
-      this.windowWidth = window.innerWidth;
-      if (this.windowWidth > 900 && this.windowWidth < 1600 )
-        this.changeScreen('middle')
-      else if (this.windowWidth >= 1600)
-        this.changeScreen('full')
-      else if (this.windowWidth <= 900)
-        this.changeScreen('small')
-    },
-    changeScreen( screen ){
-      let obj = {};
-      switch (screen) {
-        case 'full' :
-           obj = {
-             fullScreen: true,
-             middleScreen: false,
-             smallScreen : false
-           };
-          break;
-        case 'middle' :
-          obj = {
-            fullScreen: false,
-            middleScreen: true,
-            smallScreen : false
-          };
-          break;
-        case 'small' :
-          obj = {
-            fullScreen: false,
-            middleScreen: false,
-            smallScreen : true
-          };
-          break;
+      loginUser( token ) {
+          this.user.login( token );
+          this.$store.dispatch('loginUser', token);
+      },
+      logoutUser() {
+          this.user.logout();
       }
-      this.$store.commit('changeScreen', obj);
-    }
-  }
+  },
+  mounted() {
+      this.user = new User();
+      if (this.user.tryInit())
+        this.$store.dispatch( 'loginUser', this.user.token );
+      else
+        console.log('not auth');
+  },
 }
 </script>
 
@@ -70,9 +43,6 @@ export default {
     font-family: 'Roboto', sans-serif;
   }
   #app {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     display: flex;
     justify-content: center;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="logo__container" v-if="this.$store.state.screenState.fullScreen">
+  <div class="logo__container">
     <img @click="$router.push('/')" class="logo" src="../../../assets/logo_true.png" alt="">
   </div>
 </template>
@@ -13,5 +13,13 @@ export default {
 <style scoped>
   .logo {
     width: 120px;
+  }
+  .logo__container {
+    display: none;
+  }
+  @media (min-width: 1200px) {
+    .logo__container {
+      display: flex;
+    }
   }
 </style>

@@ -3,7 +3,7 @@
     <logo-content></logo-content>
     <linked-list></linked-list>
     <div class="user-group">
-      <LoginButton :text="'Вход'" @click="this.loginVisible = true" :icon="'pi pi-user'" :type="'confirm'"></LoginButton>
+      <LoginButton :text="'Вход'" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'confirm'"></LoginButton>
     </div>
   </div>
 
@@ -30,6 +30,7 @@
       :type="'login'"
       @hideDialog="this.loginVisible = false;"
       @register="this.loginVisible = false; this.registerVisible = true"
+      @loginSuccess = "(token) => {this.$emit('login', token); this.loginVisible = false;}"
   >
     Вход
   </UserModal>
@@ -62,7 +63,7 @@ export default {
       registerVisible: false,
       sidebarVisible: false
     }
-  }
+  },
 }
 </script>
 
@@ -92,7 +93,7 @@ export default {
   }
 
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1101px) {
     .navbar__fullscreen {
       display: flex;
     }
@@ -103,7 +104,7 @@ export default {
       display: none;
     }
   }
-  @media (max-width: 1100px) and (min-width: 700px) {
+  @media (max-width: 1100px) and (min-width: 701px) {
     .navbar__fullscreen {
       display: none;
     }

@@ -40,6 +40,14 @@ const user = {
             state.registration.name = value;
         },
 
+        setUserLogin( state ) {
+            state.is_auth = true;
+        },
+
+        setUserToken( state, token ) {
+            state.auth_token = token;
+        }
+
     },
     actions: {
         setEmail( { commit }, value ) {
@@ -55,6 +63,10 @@ const user = {
         },
         setPasswordConfirm( { commit }, value ) {
             commit('setRegPasswordConf', value.value);
+        },
+        loginUser( {commit}, value ) {
+            commit( 'setUserLogin' );
+            commit( 'setUserToken', value );
         }
     }
 }
