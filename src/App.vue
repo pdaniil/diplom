@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header @login="loginUser" ></Header>
+    <Header @login="loginUser" @logout="logoutUser"></Header>
     <div class="article">
       <router-view />
     </div>
@@ -26,6 +26,7 @@ export default {
       },
       logoutUser() {
           this.user.logout();
+          this.$store.dispatch('logoutUser');
       }
   },
   mounted() {

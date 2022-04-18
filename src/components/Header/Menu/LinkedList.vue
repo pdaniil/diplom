@@ -2,6 +2,9 @@
   <div class="component">
     <TabMenu id="tabstrip" class="p-tag-warning" :model="items" />
   </div>
+  <div class="component" v-if="this.$store.state.user.is_auth">
+    <TabMenu  class="p-tag-warning" :model="itemsAuth" />
+  </div>
 </template>
 
 <script>
@@ -12,8 +15,11 @@ export default {
     return {
       items: [
         {label: 'Искать товары', icon: 'pi pi-fw pi-search', to: '/search', defaultIcon : 'pi pi-fw pi-search'},
-        {label: 'Мой профиль', icon: 'pi pi-fw pi-user', to:'/profile', defaultIcon : 'pi pi-fw pi-user'},
+        {label: 'Мои заказы', icon: 'pi pi-fw pi-shopping-bag', to:'/orders', defaultIcon : 'pi pi-fw pi-user'},
         {label: 'Сообщения', icon: 'pi pi-fw pi-envelope', to:'/manage-chat', defaultIcon : 'pi pi-fw pi-envelope'},
+      ],
+      itemsAuth: [
+        {label: 'Мой профиль', icon: 'pi pi-fw pi-user', to:'/profile', defaultIcon : 'pi pi-fw pi-envelope'},
       ],
       currentItem: 0,
       firstChange: true,

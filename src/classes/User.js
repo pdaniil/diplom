@@ -14,6 +14,10 @@ export default
             document.cookie = "token=" + token + '; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT';
         }
 
+        resetCookie() {
+            document.cookie = "token=";
+        }
+
         getTokenByCookie(token = 'token') {
             let matches = document.cookie.match(new RegExp(
                 "(?:^|; )" + token.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + "=([^;]*)"
@@ -33,7 +37,10 @@ export default
         }
 
         logout() {
-
+            this.name = '';
+            this.email = '';
+            this.token = '';
+            this.resetCookie();
         }
 
         tryInit() {

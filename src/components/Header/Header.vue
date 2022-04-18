@@ -3,7 +3,8 @@
     <logo-content></logo-content>
     <linked-list></linked-list>
     <div class="user-group">
-      <LoginButton :text="'Вход'" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'confirm'"></LoginButton>
+      <LoginButton v-if="!this.$store.state.user.is_auth" :text="'Войти'" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'confirm'"></LoginButton>
+        <Button v-if="this.$store.state.user.is_auth" @click="this.$emit('logout')" icon="pi pi-sign-out" class="p-button-danger p-button-outlined mt-5 " />
     </div>
   </div>
 
@@ -11,7 +12,8 @@
     <LoginButton :text="'Меню'"  @click="this.sidebarVisible = true"  :type="'confirm'"></LoginButton>
     <logo-content></logo-content>
     <div class="user-group" style="align-self: flex-end;">
-      <LoginButton :text="'Войти'" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'confirm'"></LoginButton>
+      <LoginButton v-if="!this.$store.state.user.is_auth" :text="'Войти'" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'confirm'"></LoginButton>
+      <LoginButton v-if="this.$store.state.user.is_auth" :text="'Мой профиль'"  :type="'confirm'"></LoginButton>
     </div>
   </div>
 
@@ -19,7 +21,8 @@
     <LoginButton  @click="this.sidebarVisible = true" :icon="'pi pi-list'" :type="'extra-mobile'"></LoginButton>
     <LogoText></LogoText>
     <div class="user-group">
-      <LoginButton  @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'extra-mobile'"></LoginButton>
+      <LoginButton  v-if="!this.$store.state.user.is_auth" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'extra-mobile'"></LoginButton>
+      <LoginButton  v-if="this.$store.state.user.is_auth" @click="this.loginVisible = true" :icon="'pi pi-user'" :type="'extra-mobile'"></LoginButton>
     </div>
   </div>
 
@@ -92,6 +95,10 @@ export default {
     border-bottom: 2px solid var(--green-200);
   }
 
+  .group_auth_button {
+    display: flex;
+    padding: 2px;
+  }
 
   @media (min-width: 1101px) {
     .navbar__fullscreen {

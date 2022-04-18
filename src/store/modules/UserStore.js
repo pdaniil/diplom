@@ -46,6 +46,11 @@ const user = {
 
         setUserToken( state, token ) {
             state.auth_token = token;
+        },
+
+        logOut( state ) {
+            state.is_auth = false;
+            state.auth_token = '';
         }
 
     },
@@ -67,6 +72,9 @@ const user = {
         loginUser( {commit}, value ) {
             commit( 'setUserLogin' );
             commit( 'setUserToken', value );
+        },
+        logoutUser( { commit } ) {
+            commit('logOut');
         }
     }
 }
