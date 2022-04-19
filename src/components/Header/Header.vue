@@ -13,7 +13,7 @@
     <logo-content></logo-content>
     <div class="user-group" style="align-self: flex-end;">
       <LoginButton v-if="!this.$store.state.user.is_auth" :text="'Войти'" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'confirm'"></LoginButton>
-      <LoginButton v-if="this.$store.state.user.is_auth" :text="'Мой профиль'"  :type="'confirm'"></LoginButton>
+      <LoginButton @click="$router.push('/profile')"  v-if="this.$store.state.user.is_auth" :text="'Мой профиль'"  :type="'confirm'"></LoginButton>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
     <LogoText></LogoText>
     <div class="user-group">
       <LoginButton  v-if="!this.$store.state.user.is_auth" @click="this.loginVisible = true" :icon="'pi pi-user-plus'" :type="'extra-mobile'"></LoginButton>
-      <LoginButton  v-if="this.$store.state.user.is_auth" @click="this.loginVisible = true" :icon="'pi pi-user'" :type="'extra-mobile'"></LoginButton>
+      <LoginButton @click="$router.push('/profile')"  v-if="this.$store.state.user.is_auth" :icon="'pi pi-user'" :type="'extra-mobile'"></LoginButton>
     </div>
   </div>
 

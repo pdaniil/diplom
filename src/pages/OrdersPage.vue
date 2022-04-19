@@ -1,12 +1,12 @@
 <template>
-  <div class="main_page"></div>
+  <div class="orders">
+
+  </div>
 </template>
 
 <script>
-
 export default {
-  name: "HomePage",
-
+  name: "OrdersPage"
 }
 </script>
 

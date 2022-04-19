@@ -1,12 +1,12 @@
 <template>
-  <div class="main_page"></div>
+  <div class="cart">
+
+  </div>
 </template>
 
 <script>
-
 export default {
-  name: "HomePage",
-
+  name: "CartPage"
 }
 </script>
 

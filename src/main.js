@@ -16,6 +16,7 @@ import 'primevue/resources/themes/saga-blue/theme.css'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 import '/node_modules/primeflex/primeflex.css';
+import BadgeDirective from 'primevue/badgedirective';
 import Tooltip from 'primevue/tooltip';
 
 
@@ -24,6 +25,7 @@ const app = createApp(App);
 app.use(PrimeVue);
 app.use(store);
 app.directive('tooltip', Tooltip);
+app.directive('badge', BadgeDirective);
 components.forEach(component => {
     app.component(component.name, component);
 });

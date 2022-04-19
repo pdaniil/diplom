@@ -1,5 +1,5 @@
 <template>
-  <div  class="component component-fullscreen">
+  <div  class="component component-fullscreen" >
     <div class="text-8xl part">Part</div>
     <div class="text-8xl text-green-300 shop">Shop</div>
   </div>
@@ -30,7 +30,7 @@ export default {
   .component {
     display: flex;
     align-items: flex-end;
-
+    cursor: pointer;
   }
   .component-fullscreen {
     display: none;

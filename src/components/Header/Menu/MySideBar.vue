@@ -51,10 +51,10 @@ export default {
           }
         },
         {
-          label: 'Мой профиль',
-          icon: 'pi pi-user',
+          label: 'Мои заказы',
+          icon: 'pi pi-shopping-bag',
           command: () => {
-            this.$router.push('/profile');
+            this.$router.push('/orders');
             this.visibleLeft = false;
           }
         },

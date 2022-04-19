@@ -1,5 +1,5 @@
 <template>
-  <div class="logo__content">
+  <div class="logo__content" @click="$router.push('/')" >
     <logo-image></logo-image>
     <logo-text></logo-text>
   </div>
@@ -18,6 +18,7 @@ export default {
   .logo__content {
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
   }
   .logo__content .logo__container {
 

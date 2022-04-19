@@ -3,6 +3,8 @@ import SearchPage from "@/pages/SearchPage";
 import ChatPage from "@/pages/ChatPage";
 import ManageChatPage from "@/pages/ManageChatPage";
 import ProfilePage from "@/pages/ProfilePage";
+import OrdersPage from "@/pages/OrdersPage";
+import CartPage from "@/pages/CartPage";
 
 import {createRouter, createWebHistory} from "vue-router";
 const routes = [
@@ -25,6 +27,14 @@ const routes = [
     {
         path: '/profile',
         component: ProfilePage
+    },
+    {
+        path: '/orders',
+        component: OrdersPage
+    },
+    {
+        path: '/cart',
+        component: CartPage
     },
 ];
 

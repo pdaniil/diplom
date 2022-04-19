@@ -16,6 +16,7 @@ export default {
   }
   .logo__container {
     display: none;
+    cursor: pointer;
   }
   @media (min-width: 1200px) {
     .logo__container {
