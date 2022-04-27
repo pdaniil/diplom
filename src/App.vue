@@ -25,7 +25,8 @@ export default {
   components: {MyFooter, CartModule, Header},
   data(){
     return {
-        user: User
+        user: User,
+        user2: User
     }
   },
   methods: {
@@ -34,22 +35,13 @@ export default {
       },
       loginUser( token ) {
           this.user.login( token );
-          this.$store.dispatch('loginUser', token);
       },
       logoutUser() {
           this.user.logout();
-          this.$store.dispatch('logoutUser');
       }
   },
   mounted() {
-      this.user = new User();
-      if (this.user.tryInit())
-      {
-        this.$store.dispatch( 'loginUser', this.user.token );
-        //this.$store.dispatch('initCart')
-      }
-      else
-        console.log('not auth');
+      this.user = new User( this.$store );
   },
 }
 </script>
@@ -75,8 +67,7 @@ export default {
     grid-template-rows: 1fr auto;
   }
   .top_content {
-
-
+    
   }
   .footer_content {
     grid-row-start: 3;

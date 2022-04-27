@@ -166,7 +166,9 @@ export default {
             this.currentErrorLogin = '';
 
             if (url == 'login')
+            {
               this.$emit('loginSuccess', response.token);
+            }
         }
 
     },

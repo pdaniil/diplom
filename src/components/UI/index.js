@@ -11,6 +11,7 @@ import SplitButton from 'primevue/splitbutton';
 import Message from 'primevue/message';
 import MySlider from "@/components/UI/Slider/MySlider";
 import Badge from 'primevue/badge';
+import InputNumber from "primevue/inputnumber";
 export default [
-    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton, Message, MySlider,Badge
+    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton, Message, MySlider,Badge,InputNumber
 ]

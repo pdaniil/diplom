@@ -19,6 +19,9 @@ const user = {
         is_admin: false,
         is_auth: false,
         auth_token: '',
+        name: '',
+        email: '',
+        id: 0
     }),
     mutations: {
         setAuthEmail( state, value ) {
@@ -51,6 +54,12 @@ const user = {
         logOut( state ) {
             state.is_auth = false;
             state.auth_token = '';
+        },
+
+        setUserData( state, user) {
+            state.email = user.email;
+            state.name = user.name;
+            state.id = user.id;
         }
 
     },
@@ -75,6 +84,10 @@ const user = {
         },
         logoutUser( { commit } ) {
             commit('logOut');
+        },
+
+        setUserData( {commit}, user ) {
+            commit( 'setUserData', user );
         }
     }
 }

@@ -100,7 +100,7 @@ export default {
     padding: 2px;
   }
 
-  @media (min-width: 1101px) {
+  @media (min-width: 1251px) {
     .navbar__fullscreen {
       display: flex;
     }
@@ -111,7 +111,7 @@ export default {
       display: none;
     }
   }
-  @media (max-width: 1100px) and (min-width: 701px) {
+  @media (max-width: 1250px) and (min-width: 701px) {
     .navbar__fullscreen {
       display: none;
     }

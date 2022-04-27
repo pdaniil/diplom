@@ -77,7 +77,8 @@ export default {
     color: var(--green-600);
   }
   .dialog__content {
-
+      display: flex;
+    flex-direction: column;
   }
   .dialog__footer {
     margin-top: 20px;

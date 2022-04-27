@@ -1,12 +1,13 @@
 <template>
-    <div class="cart_module">
-      <i class="pi pi-shopping-cart" style="font-size: 2.5rem" v-badge.success="this.$store.state.cart.countProduct"></i>
+    <div class="cart_module" @click="this.$router.push('/cart')">
+      <i class="pi pi-shopping-cart" style="font-size: 2.5rem" v-badge.success="this.$store.state.cart.countProducts"></i>
     </div>
+
 </template>
 
 <script>
 export default {
-  name: "CartModule"
+  name: "CartModule",
 }
 </script>
 
@@ -21,6 +22,8 @@ export default {
       border-radius: 50%;
       padding: 15px;
       animation: pulse infinite 3s ease-in-out;
+      z-index: 999;
+      cursor: pointer;
     }
     .cart_module i {
         font-size: 14px;

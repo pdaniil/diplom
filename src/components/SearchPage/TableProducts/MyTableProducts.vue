@@ -19,7 +19,8 @@ export default {
   name: "MyTableProducts",
   props: {
     products: Array,
-    table: String
+    table: String,
+    isCart: Boolean
   },
   components: {
     MyTableHeader, MyTableRow
@@ -101,7 +102,7 @@ export default {
                   break;
               }
           }
-          else
+          else if (this.table == 'analogs')
           {
             switch (true) {
               case this.$store.state.sorted.analogs.byDate :
