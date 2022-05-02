@@ -12,6 +12,9 @@ import Message from 'primevue/message';
 import MySlider from "@/components/UI/Slider/MySlider";
 import Badge from 'primevue/badge';
 import InputNumber from "primevue/inputnumber";
+import Toast from 'primevue/toast';
+import Steps from 'primevue/steps';
+import RadioButton from 'primevue/radiobutton';
 export default [
-    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton, Message, MySlider,Badge,InputNumber
+    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton, Message, MySlider,Badge,InputNumber, Toast, Steps, RadioButton
 ]

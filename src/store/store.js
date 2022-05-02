@@ -4,6 +4,7 @@ import sorted from "@/store/modules/SortedStore";
 import user from "@/store/modules/UserStore";
 import widthScreen from "@/store/modules/ScreenStore";
 import shopCart from "@/store/modules/CartStore";
+import ordering from "@/store/modules/OrderingStore";
 
 export const store = createStore({
             state: () => ({
@@ -14,7 +15,8 @@ export const store = createStore({
                 cart: shopCart,
                 filter: filter,
                 sorted: sorted,
-                user: user
+                user: user,
+                ordering: ordering
             },
         })
 
