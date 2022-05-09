@@ -15,6 +15,7 @@ import InputNumber from "primevue/inputnumber";
 import Toast from 'primevue/toast';
 import Steps from 'primevue/steps';
 import RadioButton from 'primevue/radiobutton';
+import Card from 'primevue/card';
 export default [
-    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton, Message, MySlider,Badge,InputNumber, Toast, Steps, RadioButton
+    TabMenu, Button,  InputText, Slider, Checkbox, Paginator, MultiSelect, Sidebar, Dialog, SplitButton, Message, MySlider,Badge,InputNumber, Toast, Steps, RadioButton, Card
 ]

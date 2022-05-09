@@ -6,7 +6,9 @@
 
 export default {
   name: "HomePage",
-
+  mounted() {
+    this.$router.push('/search');
+  }
 }
 </script>
 

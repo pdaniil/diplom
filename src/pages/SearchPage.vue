@@ -11,7 +11,7 @@
           <MySearchString :articleSearch="article" :load="onload" @article="search"></MySearchString>
         </div>
         <div class="onload text-center mt-3 mb-1" v-if="onload">
-          Идёт поиск товаров <i class="pi pi-spin pi-spinner" style="font-size: 1.5rem"></i>
+            <ProgressSpinner  />
         </div>
         <div class="onload text-center mt-3 mb-1" v-if="first_open">
           Тут отобразятся результаты поиска
@@ -44,11 +44,11 @@ import MySearchString from "@/components/SearchPage/MySearchString";
 import MyTableProducts from "@/components/SearchPage/TableProducts/MyTableProducts";
 import Product from "@/classes/Product";
 import MyFilter from "@/components/SearchPage/MyFilter";
-
+import ProgressSpinner from 'primevue/progressspinner';
 
 export default {
   name: "SearchPage",
-  components: {MyFilter, MyTableProducts, MySearchString},
+  components: {MyFilter, MyTableProducts, MySearchString,ProgressSpinner},
   data() {
     return {
       article: '',

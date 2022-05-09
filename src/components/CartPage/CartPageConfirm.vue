@@ -128,7 +128,7 @@ export default {
       return fetch("http://partshop.site/backend/public/api/order/items/create", requestOptions)
           .then(response => response.text())
           .then(result => console.log(result))
-          .catch(error => console.log('error', error));
+          .catch(error => console.log('Ошибка при создании позиции заказа в бд', error));
     },
     fetchCreateOrder( order ) {
       let myHeaders = new Headers();
@@ -159,7 +159,7 @@ export default {
              );
              Promise.all( arr ) . then(() => { this.$router.push('/order_created') });
           })
-          .catch(error => console.log('error', error));
+          .catch(error => console.log('Ошибка при создании заказа в бд', error));
     },
     sendOrder() {
       this.onOrderCreating = true;

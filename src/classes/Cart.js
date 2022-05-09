@@ -34,7 +34,6 @@ class Cart {
             }
             else
             {
-                console.log(userCart);
                 userCart = userCart[0];
                 this.countProducts = userCart.countProducts;
                 this.totalPrice = userCart.totalPrice;

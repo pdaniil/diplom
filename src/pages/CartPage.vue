@@ -190,5 +190,8 @@ export default {
     background: var(--gray-200);
     padding: 12px;
   }
+  .card {
+    display: none;
+  }
 }
 </style>

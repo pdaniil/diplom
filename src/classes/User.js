@@ -37,7 +37,8 @@ export default
             const user = {
                 email : this.email,
                 name : this.name,
-                id: this.id
+                id: this.id,
+                is_admin: this.is_admin
             };
             return user;
         }
@@ -90,11 +91,11 @@ export default
         //FETCHES//////////////////////////////////////////////////////////////////////////
 
         fetchUserData( token ) {
-            var myHeaders = new Headers();
+            let myHeaders = new Headers();
             myHeaders.append("Accept", "application/json");
             myHeaders.append("Authorization", "Bearer " + token);
 
-            var requestOptions = {
+            let requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
                 redirect: 'follow'

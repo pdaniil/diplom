@@ -26,23 +26,20 @@ export default {
   data(){
     return {
         user: User,
-        user2: User
+        connection: null
     }
   },
   methods: {
-      fetchLoguot(){
-
-      },
       loginUser( token ) {
           this.user.login( token );
       },
       logoutUser() {
           this.user.logout();
-      }
+      },
   },
   mounted() {
       this.user = new User( this.$store );
-  },
+  }
 }
 </script>
 
@@ -73,5 +70,12 @@ export default {
     grid-row-start: 3;
     grid-row-end: 4;
   }
+
+  @media (max-width: 700px) {
+    .headLine {
+      font-size: 24px !important;
+    }
+  }
+
 
 </style>

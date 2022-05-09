@@ -9,6 +9,11 @@ import CartPageDelivery from "@/components/CartPage/CartPageDelivery";
 import CartPagePayment from "@/components/CartPage/CartPagePayment";
 import CartPageConfirm from "@/components/CartPage/CartPageConfirm";
 import OrderCreatedPage from "@/pages/OrderCreatedPage";
+import OrdersItemsPage from "@/pages/OrdersItemsPage";
+import AdminPage from "@/pages/AdminPage";
+import StoragesPage from "@/components/AdminPage/StoragesPage";
+import AdminChatManager from "@/pages/AdminChatManager";
+import AdminChat from "@/pages/AdminChat";
 import {createRouter, createWebHistory} from "vue-router";
 const routes = [
     {
@@ -20,7 +25,7 @@ const routes = [
         component: SearchPage
     },
     {
-        path: '/chat',
+        path: '/chat/:order_id',
         component: ChatPage
     },
     {
@@ -54,7 +59,27 @@ const routes = [
     {
         path: '/order_created',
         component: OrderCreatedPage
-    }
+    },
+    {
+        path: '/order_items/:order_id',
+        component: OrdersItemsPage
+    },
+    {
+        path: '/admin',
+        component: AdminPage
+    },
+    {
+        path: '/admin/storages',
+        component: StoragesPage
+    },
+    {
+        path: '/admin/chat_manager',
+        component: AdminChatManager
+    },
+    {
+        path: '/admin/chat/:order_id',
+        component: AdminChat
+    },
 ];
 
 const router = createRouter({

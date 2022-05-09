@@ -60,6 +60,7 @@ const user = {
             state.email = user.email;
             state.name = user.name;
             state.id = user.id;
+            state.is_admin = user.is_admin;
         }
 
     },

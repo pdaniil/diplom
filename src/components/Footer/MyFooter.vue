@@ -108,4 +108,12 @@ export default {
       text-shadow: 0px 0px 1px var(--green-700);
       font-weight: 300;
     }
+
+    @media (max-width: 700px) {
+        * {
+          font-size: 12px !important;
+        }
+
+    }
+
 </style>
